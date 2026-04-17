@@ -25,15 +25,29 @@ while (left < right) {
     // 1. 跳过无效元素 (如果是字符串处理)
     while (left < right && !isValid(s[left])) left++;
     while (left < right && !isValid(s[right])) right--;
-    
+
     // 2. 核心判断
     if (s[left] !== s[right]) return false;
-    
+
     // 3. 收缩边界
     left++;
     right--;
 }
 return true;
+```
+
+## 最小骨架（快慢指针版）
+```javascript
+let slow = 0;
+for (let fast = 1; fast < nums.length; fast++) {
+    // 1. 寻找符合条件的元素
+    if (nums[fast] !== nums[slow]) {
+        // 2. 扩展有效边界并覆盖
+        slow++;
+        nums[slow] = nums[fast];
+    }
+}
+return slow + 1;
 ```
 
 ## 常见变体
@@ -46,19 +60,21 @@ return true;
 ## 我做过的题（按时间倒序）
 | 日期 | 题目 | 难度 | 角色 | Log |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-04-17 | 125. 验证回文串 | Easy | 首次引入 | [log](../training-logs/2026-04-17-valid-palindrome.md) |
+| 2026-04-17 | 26. 删除有序数组中的重复项 | Easy | 巩固 (快慢指针) | [log](../training-logs/2026-04-17-remove-duplicates.md) |
+| 2026-04-17 | 125. 验证回文串 | Easy | 首次引入 (对撞指针) | [log](../training-logs/2026-04-17-valid-palindrome.md) |
 
 ## 踩过的坑
 - 内层跳过逻辑忘记检查 `left < right` 导致指针擦肩而过。
-- 忘记统一字符大小写或过滤特殊符号。
+- 快慢指针中 `slow` 的初始位置和 `return` 的长度关系。
 
 ## 下一道值得挑战的题
-26. 删除有序数组中的重复项 (尝试快慢指针变体)
+15. 三数之和 (综合运用对撞指针与去重)
 
 ## 最近复述（Verbalization 版本）
-想象两个人在独木桥两头往中间走，每走一步都要对一下暗号。如果暗号对不上，直接判定失败；如果遇到桥上的障碍物（空格/逗号），就跨过去接着走。直到两人碰面，暗号全对上了，这桥才算走通。
+- **对撞指针**：独木桥两头往中间走，每走一步都要对一下暗号。
+- **快慢指针**：侦察兵（快）在前面带路，泥瓦匠（慢）在后面修路，只有侦察兵发现新东西，泥瓦匠才挪个窝。
 
 ## 状态
-- 当前状态：`引入中`
+- 当前状态：`学习中`
 - 最后一次实战：2026-04-17
 - 下一次复习建议：2026-04-24
