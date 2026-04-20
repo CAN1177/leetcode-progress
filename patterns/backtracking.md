@@ -32,4 +32,4 @@ function backtrack(路径, 选择列表) {
 
 ## 避坑指南
 - **拷贝问题**：JS 中记档必须 `[...path]`。
-- **剪枝 (Pruning)**：对于有重复元素的情况，必须先排序，再通过 `if (i > start && nums[i] == nums[i-1]) continue` 跳过。
+- **剪枝 (Pruning)**：对于有重复元素的情况，必须先排序，再通过 `if (i > start && nums[i] == nums[i-1]) continue` 跳过。这被称为“树层去重”，通过 `i > start` 确保只跳过同级兄弟节点，不影响递归深度的子节点。
