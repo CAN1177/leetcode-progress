@@ -32,3 +32,4 @@ function solve(n) {
 
 ## 训练记录
 - [70. 爬楼梯](../training-logs/70-climbing-stairs.md) (2026-04-22)
+- [509. 斐波那契数](../training-logs/509-fibonacci-number.md) (2026-04-22)
